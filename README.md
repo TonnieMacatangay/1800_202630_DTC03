@@ -63,11 +63,8 @@ elmo-hikes/
 ## Contributors
 
 - **Maryam Yaghtin** - BCIT CST Student with a passion for learning.
-  HEAD -**Ethan**- BCIT CST Student with a passion for content creation and videogames. Fun fact: Loves minesweeper.
-
-- Tonnie Macatangay - BCIT CST Student with a passion for games.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
-  develop
+- **Ethan**- BCIT CST Student with a passion for content creation and videogames. Fun fact: Loves minesweeper.
+- **Tonnie Macatangay** - BCIT CST Student with a passion for games.
 
 ---
 

@@ -62,7 +62,7 @@ elmo-hikes/
 
 ## Contributors
 
-- **Maryam Yaghtin** - BCIT CST Student with a passion for leaerning.
+- **Maryam Yaghtin** - BCIT CST Student with a passion for learning.
 
 ---
 

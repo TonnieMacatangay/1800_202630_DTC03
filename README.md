@@ -63,11 +63,8 @@ elmo-hikes/
 ## Contributors
 
 - **Maryam Yaghtin** - BCIT CST Student with a background in Materials Engineering and a passion for learning technology. Fun fact: Switched from Materials Engineering to Computer Science after completing a PhD.
-  HEAD -**Ethan**- BCIT CST Student with a passion for content creation and videogames. Fun fact: Loves minesweeper.
-
-- Tonnie Macatangay - BCIT CST Student with a passion for games.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
-  develop
+- **Ethan**- BCIT CST Student with a passion for content creation and videogames. Fun fact: Loves minesweeper.
+- **Tonnie Macatangay** - BCIT CST Student with a passion for video games. Tonnie was previously a BCIT graduate from the Mechanical Systems program and has worked as a Mechanical Designer for Building Systems.
 
 ---
 

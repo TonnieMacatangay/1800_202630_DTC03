@@ -64,7 +64,7 @@ elmo-hikes/
 
 - **Maryam Yaghtin** - BCIT CST Student with a passion for learning.
 - **Ethan**- BCIT CST Student with a passion for content creation and videogames. Fun fact: Loves minesweeper.
-- **Tonnie Macatangay** - BCIT CST Student with a passion for games.
+- **Tonnie Macatangay** - BCIT CST Student with a passion for video games. Tonnie was previously a BCIT graduate from the Mechanical Systems program and has worked as a Mechanical Designer for Building Systems.
 
 ---
 

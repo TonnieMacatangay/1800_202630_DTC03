@@ -1,33 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App">
+    <meta name="comp1800 template" content="My 1800 App" />
 
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Other libraries go here -->
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
     <!-- Stuff for body goes here -->
 
+    <!-- Bottom Navbar / Footer -->
+    <!-- fixed-bottom class will force this to the bottom of the page -->
+    <!-- container-fluid with column will space these out evenly -->
+    <nav
+      class="navbar bg-body-tertiary fixed-bottom container-fluid column p-4"
+    >
+      <button type="button">Home</button>
 
+      <button type="button">Message</button>
+
+      <button type="button">Search</button>
+
+      <button type="button">Profile</button>
+    </nav>
+
+    <!-- Just some big buttons -->
+    <!-- We want it centered, which d-flex and justify-content-center will do for us -->
+    <main>
+      <h1 class="d-flex justify-content-center p-5">What do you need help with?</h1>
+      <div
+        class="mx-auto p-2 d-flex justify-content-center"
+        style="width: auto"
+      >
+        <button
+          class="container-fluid w-25 btn btn-primary btn-lg mx-auto"
+          type="button"
+        >
+          Communication Apps
+        </button>
+      </div>
+      <div
+        class="mx-auto p-2 d-flex justify-content-center"
+        style="width: auto"
+      >
+        <button
+          class="container-fluid w-25 btn btn-primary btn-lg mx-auto"
+          type="button"
+        >
+          Navigation Apps
+        </button>
+      </div>
+      <div
+        class="mx-auto p-2 d-flex justify-content-center"
+        style="width: auto"
+      >
+        <button
+          class="container-fluid w-25 btn btn-primary btn-lg mx-auto"
+          type="button"
+        >
+          Others (Type Here)
+        </button>
+      </div>
+    </main>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <!-- <script type="module" src="./src/main.js"></script> -->
-
-</body>
-
+    <script type="module" src="./src/main.js"></script>
+  </body>
 </html>

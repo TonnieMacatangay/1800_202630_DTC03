@@ -22,35 +22,6 @@
     <!-- Bottom Navbar / Footer -->
     <!-- fixed-bottom class will force this to the bottom of the page -->
     <!-- container-fluid with column will space these out evenly -->
-    <nav
-      class="navbar bg-body-tertiary fixed-bottom container-fluid column p-4"
-    >
-      <button type="button" class="btn-icon" aria-label="Home">
-        <svg class="bi" width="25" height="25" fill="currentColor" aria-hidden="true">
-          <use href="images\home_icon.svg"></use>
-        </svg>
-      </button>
-
-      <button type="button" class="btn-icon" aria-label="Search">
-        <svg class="bi" width="25" height="25" fill="currentColor" aria-hidden="true">
-          <use href="images\search_icon.svg"></use>
-        </svg>
-      </button>
-
-      <button type="button" class="btn-icon" aria-label="Message">
-        <svg class="bi" width="25" height="25" fill="currentColor" aria-hidden="true">
-          <use href="images\message-text_icon.svg"></use>
-        </svg>
-      </button>
-
-      <button type="button" class="btn-icon" aria-label="Profile" onclick="window.location.href = 'login.html'">
-        <svg class="bi" width="25" height="25" fill="currentColor" aria-hidden="true">
-          <use href="images\profile-circle_icon.svg"></use>
-        </svg>
-      </button>
-
-    </nav>
-
     <!-- Just some big buttons -->
     <!-- We want it centered, which d-flex and justify-content-center will do for us -->
     <main>
@@ -95,11 +66,14 @@
         </button>
       </div>
     </main>
+
+    <site-footer></site-footer>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
   </body>
 </html>

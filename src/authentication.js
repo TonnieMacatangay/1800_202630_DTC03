@@ -7,8 +7,8 @@
 // -------------------------------------------------------------
 
 // Import the initialized Firebase Authentication object
-import { auth } from "/src/firebaseConfig.js";
-
+import { auth, db } from "/src/firebaseConfig.js";
+import { doc, setDoc } from "firebase/firestore";
 // Import specific functions from the Firebase Auth SDK
 import {
   signInWithEmailAndPassword,
@@ -50,14 +50,39 @@ export async function loginUser(email, password) {
 // Usage:
 //   const user = await signupUser("Alice", "alice@email.com", "secret");
 // -------------------------------------------------------------
+
 export async function signupUser(name, email, password) {
+  // Create a new user in Firebase Authentication
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
     password,
   );
-  await updateProfile(userCredential.user, { displayName: name });
-  return userCredential.user;
+
+  const user = userCredential.user;
+
+  // Update the user's display name
+  await updateProfile(user, { displayName: name });
+
+  // Create a user document in Cloud Firestore
+  try {
+    await setDoc(doc(db, "users", user.uid), {
+      name: name,
+      email: email,
+      country: "Canada",
+      school: "BCIT",
+    });
+
+    console.log("Firestore user document created successfully!");
+  } catch (error) {
+    console.error("Error creating user document in Firestore:", error);
+
+    alert(
+      `Error creating user document:\n${error.code || ""}\n${error.message || error}`,
+    );
+  }
+
+  return user;
 }
 
 // -------------------------------------------------------------

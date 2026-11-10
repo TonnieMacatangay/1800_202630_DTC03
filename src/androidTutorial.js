@@ -11,47 +11,23 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 // Instructions for four WhatsApp activities on Android.
 const tutorials = {
-  "video-call": {
-    title: "Make a WhatsApp Video Call",
-    steps: [
-      "Open WhatsApp on your Android phone.",
-      "Open the chat with the person you want to call.",
-      "Tap the video camera icon at the top of the chat.",
-    ],
+  installApp: {
+    title: "Install an App through Google Play Store",
+    steps: ["1.", "2.", "3."],
   },
 
-  text: {
-    title: "Send a WhatsApp Text Message",
+  deleteApp: {
+    title: "Delete an Android App",
     steps: [
-      "Open WhatsApp on your Android phone.",
-      "Open the chat with the person you want to message.",
-      "Type your message in the message box.",
-      "Tap the Send button.",
-    ],
-  },
-
-  photo: {
-    title: "Send a Photo on WhatsApp",
-    steps: [
-      "Open WhatsApp and select a chat.",
-      "Tap the paperclip icon, then select Gallery.",
-      "Choose the photo you want to send and tap the green Send button.",
-      "Your photo has been sent and will appear in the chat.",
-    ],
-  },
-
-  video: {
-    title: "Send a Video on WhatsApp",
-    steps: [
-      "Open WhatsApp and select a chat.",
-      "Tap the paperclip attachment icon.",
-      "Select Gallery and choose a video.",
-      "Tap the Send button.",
+      "Find the application you want to delete",
+      "Hold your finger down on the app until new options pop up",
+      `Select "Uninstall"`,
+      `If prompted, tap "Uninstall" again to confirm`,
     ],
   },
 };
 async function saveOneTutorial(tutorialID) {
-  const tutorialRef = doc(db, "whatsappTutorials", tutorialID);
+  const tutorialRef = doc(db, "googlePlayStoreTutorials", tutorialID);
 
   const existingTutorial = await getDoc(tutorialRef);
 
@@ -64,27 +40,27 @@ async function saveOneTutorial(tutorialID) {
   }
 }
 
-async function saveWhatsAppTutorials() {
+async function saveTutorials() {
   try {
-    await saveOneTutorial("video-call");
-    await saveOneTutorial("text");
-    await saveOneTutorial("photo");
-    await saveOneTutorial("video");
+    await saveOneTutorial("installApp");
+    await saveOneTutorial("deleteApp");
 
-    alert("WhatsApp tutorials saved to Firestore!");
+    alert("Google Play Store tutorials saved to Firestore!");
   } catch (error) {
     console.error("Error saving tutorials:", error);
     alert("Could not save tutorials. Check the Console.");
   }
 }
+// saveTutorials(); // comment/uncomment as needed to save values to database.
+
 
 // Get the selected tutorial from the URL.
 const parameters = new URLSearchParams(window.location.search);
-const requestedTopic = parameters.get("topic") || "video-call";
+const requestedTopic = parameters.get("topic") || "installApp";
 
-const tutorialID = requestedTopic === "video" ? "photo" : requestedTopic;
+const tutorialID = requestedTopic === "installApp" ? "installApp" : requestedTopic;
 
-let tutorial = tutorials[tutorialID] || tutorials["video-call"];
+let tutorial = tutorials[tutorialID] || tutorials["installApp"];
 
 let currentStep = 0;
 
@@ -124,25 +100,16 @@ function displayStep() {
   // Display the screenshot for each video-call step.
   // Display screenshots for the selected tutorial.
   if (
-    tutorialID === "video-call" ||
-    tutorialID === "text" ||
-    tutorialID === "photo"
+    tutorialID === "installApp" ||
+    tutorialID === "deleteApp"
   ) {
     let imageName;
 
-    if (tutorialID === "photo") {
-      if (currentStep === 0) {
-        // Step 1: Reuse the open conversation screenshot.
-        imageName = "whatsapp-video-call-2.jpg";
-      } else {
-        // Steps 2, 3, and 4: Photo tutorial screenshots.
-        imageName = `whatsapp-photo-${currentStep + 1}.jpg`;
-      }
-    } else if (tutorialID === "text" && currentStep >= 2) {
-      imageName = `whatsapp-text-${currentStep + 1}.jpg`;
-    } else {
-      imageName = `whatsapp-video-call-${currentStep + 1}.jpg`;
-    }
+    if (tutorialID === "installApp") {
+      imageName = `android-install-app-${currentStep + 1}.jpg`;
+    } else if (tutorialID === "deleteApp") {
+      imageName = `android-delete-app-${currentStep + 1}.jpg`;
+    } 
 
     stepImage.src = `/images/${imageName}`;
     stepImage.alt = `WhatsApp tutorial step ${currentStep + 1}`;
@@ -166,7 +133,7 @@ function displayStep() {
 async function readTutorial() {
   try {
     // Reference to the selected WhatsApp tutorial
-    const tutorialRef = doc(db, "whatsappTutorials", tutorialID);
+    const tutorialRef = doc(db, "googlePlayStoreTutorials", tutorialID);
 
     // Read the document from Firestore
     const tutorialSnapshot = await getDoc(tutorialRef);
@@ -216,7 +183,7 @@ let signedInUser = null;
 let isFavourite = false;
 
 // Identify this tutorial in the user's favourites.
-const favouriteID = "whatsappTutorials/" + tutorialID;
+const favouriteID = "googlePlayStoreTutorials/" + tutorialID;
 
 // Update the heart button.
 function updateFavouriteButton() {

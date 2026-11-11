@@ -15,7 +15,7 @@ class SiteFooter extends HTMLElement {
                     <img src="/images/message-text_icon.svg" width="25" height="25" alt="">
                 </button>
 
-                <button type="button" class="btn-icon" aria-label="Profile" onclick="window.location.href = '/login.html'">
+                <button type="button" class="btn-icon" aria-label="Profile" onclick="window.location.href = '/profile.html'">
                     <img src="/images/profile-circle_icon.svg" width="25" height="25" alt="">
                 </button>
             </nav>

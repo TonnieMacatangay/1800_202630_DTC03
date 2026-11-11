@@ -10,7 +10,7 @@ import {
 import { getDoc, setDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 // Basically displayCardsDynamically() from Demo 7
-async function displayCategoriesDynamically() {
+async function displayOptionsDynamically() {
     let categoryButtonTemplate = document.getElementById("categoryButtonTemplate");
     const appsCollectionRef = collection(db, "apps");
     console.log(appsCollectionRef);
@@ -26,11 +26,10 @@ async function displayCategoriesDynamically() {
             console.log("category = ", appDoc.data());
 
             // Create the button
-            newButton.querySelector("#categoryButton").textContent =
-                app.category;
-
+            newButton.querySelector("#categoryButton").textContent = app.category;
+            newButton.querySelector("#categoryButton").href = `app-options.html?category=${app.category}`;
             // Attach the button to our page
-            document.getElementById("#categoriesGoHere").appendChild(newButton);
+            document.getElementById("categoriesGoHere").appendChild(newButton);
         });
     } catch (error) {
         console.error("Error getting categories: ", error);

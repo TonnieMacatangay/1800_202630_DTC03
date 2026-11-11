@@ -11,7 +11,7 @@ class SiteFooter extends HTMLElement {
                     <img src="/images/search_icon.svg" width="25" height="25" alt="">
                 </button>
 
-                <button type="button" class="btn-icon" aria-label="Message">
+                <button type="button" class="btn-icon" aria-label="Message" onclick="window.location.href = 'write-database.html'">
                     <img src="/images/message-text_icon.svg" width="25" height="25" alt="">
                 </button>
 

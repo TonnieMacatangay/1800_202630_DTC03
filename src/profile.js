@@ -1,5 +1,5 @@
 import { db } from "./firebaseConfig.js";
-import { onAuthReady } from "./authentication.js";
+import { onAuthReady, logoutUser } from "./authentication.js";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 // The fields we store in Firestore (email comes from Auth, not from here)
@@ -84,3 +84,6 @@ async function saveProfile(event) {
 
 // ---- (2) Connect it to the form ----
 document.getElementById("profileForm").addEventListener("submit", saveProfile);
+
+// Log out when the button is clicked
+document.getElementById("logoutBtn").addEventListener("click", logoutUser);

@@ -25,6 +25,8 @@ onAuthReady(async function (user) {
     fields.forEach((field) => {
       document.getElementById(field + "Input").value = data[field] || "";
     });
+    // 4. Display the user's favourite tutorials.
+    displayFavourites();
   }
 });
 
@@ -87,3 +89,49 @@ document.getElementById("profileForm").addEventListener("submit", saveProfile);
 
 // Log out when the button is clicked
 document.getElementById("logoutBtn").addEventListener("click", logoutUser);
+
+// Display the user's favourite tutorials.
+async function displayFavourites() {
+  const container = document.getElementById("favourites-container");
+  const buttonTemplate = document.getElementById("appsButtonTemplate");
+
+  if (favourites.length === 0) {
+    container.innerHTML =
+      "<p class='text-muted'>No favourite tutorials yet.</p>";
+    return;
+  }
+
+  container.innerHTML = "";
+
+  favourites.forEach(async function (favouriteID) {
+    const parts = favouriteID.split("/");
+
+    // Check that this is a tutorial from the new database.
+    if (
+      parts.length === 4 &&
+      parts[0] === "apps" &&
+      parts[2] === "app_options"
+    ) {
+      try {
+        const tutorialSnapshot = await getDoc(doc(db, favouriteID));
+
+        if (tutorialSnapshot.exists()) {
+          const tutorial = tutorialSnapshot.data();
+
+          // Clone Tonnie's button template.
+          let newButton = buttonTemplate.content.cloneNode(true);
+
+          newButton.querySelector("#appsButton").textContent =
+            tutorial.option_name;
+
+          newButton.querySelector("#appsButton").href =
+            `app-tutorial.html?app-id=${parts[1]}&option=${parts[3]}`;
+
+          container.appendChild(newButton);
+        }
+      } catch (error) {
+        console.error("Error loading favourite tutorial:", error);
+      }
+    }
+  });
+}

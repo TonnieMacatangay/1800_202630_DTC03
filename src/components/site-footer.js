@@ -36,11 +36,10 @@ class SiteFooter extends HTMLElement {
     );}
 
     this.innerHTML = `
-        <footer class="py-4 mt-5 text-center" style="background-color: ${MIST}; color: ${DEEP_TEAL}">
+        <footer class="py-4 mt-5 text-center d-md-none" style="background-color: ${MIST}; color: ${DEEP_TEAL}">
             <p class="mb-0">&copy; 2026 BCIT COMP1800</p>
         </footer>
 
-        <!-- Empty space so the bar never covers the bottom of the page (phones only) -->
         <div class="d-lg-none" style="height: 84px"></div>
 
         <!-- Phone only bar -->

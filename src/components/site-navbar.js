@@ -28,7 +28,7 @@ class SiteNavbar extends HTMLElement {
   renderNavbar() {
     this.innerHTML = `
             <!-- Navbar: single source of truth -->
-            <nav class="sticky-top navbar navbar-expand-lg d-none d-lg-flex" style="${NAVBAR_COLOURS}">
+            <nav class="sticky-top navbar navbar-expand-lg  d-lg-flex" style="${NAVBAR_COLOURS}">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">
                         <img src="/images/logo.jpg" height="36" alt="DTC03 App logo">

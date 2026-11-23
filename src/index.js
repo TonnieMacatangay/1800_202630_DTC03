@@ -22,7 +22,7 @@ async function displayAppsDynamically() {
             // Create the Cards based on each document in apps collection in database
             newCard.querySelector("#card-link").href = `apps.html?category=${app.category}`
             newCard.querySelector("#card-image").src = `/images/${app.category_image}`
-            newCard.querySelector("#card-title").textContent = app.category.replaceAll("-", " ");
+            newCard.querySelector("#card-title").textContent = appDoc.id;
             newCard.querySelector("#card-description").textContent = app.category_description;
             // Append the newly created card on the DOM
             document.getElementById("cards-go-here").appendChild(newCard);

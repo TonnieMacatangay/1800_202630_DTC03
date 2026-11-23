@@ -10,7 +10,7 @@ import { getDoc } from "firebase/firestore";
 // Declare variable: the category from the URL (e.g., http://localhost:5173/apps.html?category=Communication-Apps)
 const params = new URL(window.location.href).searchParams;
 const appCategory = params.get("category").replaceAll("-", " "); // .replaceAll so we match exactly the document ID (with spaces, instead of "-")
-const appName = params.get("app-id"); // This value is null, if we're at the "Communication Apps" page that lists all the apps
+const appName = params.get("app-id") === null ? null : params.get("app-id"); // This value is null, if we're at the "Communication Apps" page that lists all the apps
 
 console.log("appCategory:", appCategory);
 console.log("appName:", appName); // Will be null, unless we're on the App Options page
@@ -49,7 +49,7 @@ async function displayAppsDynamically() {
             if (appName === null) {
                 newButton.querySelector("#appsButton").textContent = appDoc.id;
                 // appDoc.id will pass the generated ID of each document (Apps in this case)
-                newButton.querySelector("#appsButton").href = `apps.html?category=${appCategory.replaceAll(" ", "-")}&app-id=${appDoc.id}`;
+                newButton.querySelector("#appsButton").href = `apps.html?category=${appCategory.replaceAll(" ", "-")}&app-id=${appDoc.id.replaceAll(" ", "-")}`;
             } else {
                 newButton.querySelector("#appsButton").textContent = appDoc.id;
                 // appDoc.id will pass the generated ID of each document (Options in this case)

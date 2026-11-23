@@ -28,8 +28,7 @@ async function displayAppsDynamically() {
     //     const appsCollectionRef = collection(db, "apps");
     // } else {
     //     const appsCollectionRef = collection(db, "apps", appName, "app_options");
-    // }
-    const appsCollectionRef = (appId === null) ? collection(db, "apps") : collection(db, "apps", appId, "app_options");
+    const appsCollectionRef = (appId === null) ? collection(db, "apps2", appCategory) : collection(db, "apps2", appCategory, "app_selection");
     console.log("appsCollectionRef: ", appsCollectionRef);
     
     // Update the Page Header

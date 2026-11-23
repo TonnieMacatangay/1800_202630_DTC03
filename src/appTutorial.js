@@ -11,9 +11,9 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 
 const params = new URL(window.location.href).searchParams;
-const appCategory = params.get("category");
-const appId = params.get("app-id");
-const optionId = params.get("option");
+const appCategory = params.get("category").replaceAll("-", " ");
+const appId = params.get("app-id").replaceAll("-", " ");
+const optionId = params.get("option").replaceAll("-", " ");
 
 console.log("appCategory:", appCategory);
 console.log("appId:", appId);
@@ -85,7 +85,7 @@ async function displayStep() {
 async function readTutorial() {
   try {
     // Reference to the selected WhatsApp tutorial
-    const tutorialRef = doc(db, "apps", appId, "app_options", optionId);
+    const tutorialRef = doc(db, "apps2", appCategory, "app_selection", appId, "app_options", optionId);
 
     // Read the document from Firestore
     const tutorialSnapshot = await getDoc(tutorialRef);

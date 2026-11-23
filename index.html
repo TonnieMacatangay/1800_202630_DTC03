@@ -17,6 +17,7 @@
   </head>
 
   <body>
+    <site-navbar></site-navbar>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
@@ -37,53 +38,95 @@
         What do you need help with?
       </h1>
 
-      <div
-        class="mx-auto p-2 d-flex justify-content-center"
-        style="width: auto"
-      >
-        <button
-          class="container-fluid w-50 btn btn-primary btn-lg mx-auto"
-          type="button"
-          onclick="window.location.href = 'communication.html'"
-        >
-          Communication Apps
-        </button>
-      </div>
-      <div
-        class="mx-auto p-2 d-flex justify-content-center"
-        style="width: auto"
-      >
-        <button
-          class="container-fluid w-50 btn btn-primary btn-lg mx-auto"
-          type="button"
-          onclick="window.location.href = 'navigation.html'"
-        >
-          Navigation Apps
-        </button>
-      </div>
-      <div
-        class="mx-auto p-2 d-flex justify-content-center"
-        style="width: auto"
-      >
-        <button
-          class="container-fluid w-50 btn btn-primary btn-lg mx-auto"
-          type="button"
-          onclick="window.location.href = 'installDeleteApp.html'"
-        >
-          Installing or Deleting New Apps
-        </button>
-      </div>
-      <div
-        class="mx-auto p-2 d-flex justify-content-center"
-        style="width: auto"
-      >
-        <button
-          class="container-fluid w-50 btn btn-primary btn-lg mx-auto"
-          type="button"
-          onclick="window.location.href = 'search.html'"
-        >
-          Others (Search Here)
-        </button>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <a
+              href="apps.html?category=Communication-Apps"
+              class="card h-100 text-decoration-none"
+            >
+              <div class="ratio ratio-16x9 bg-body-secondary rounded-top">
+                <img
+                  src="/images/communication-apps.png"
+                  class="w-100 h-100 object-fit-contain rounded-top"
+                  alt=""
+                />
+              </div>
+
+              <div class="card-body">
+                <h2 class="card-title h4">Communication Apps</h2>
+                <p class="card-text text-body-secondary">
+                  Send messages, make video calls and share photos with apps
+                  like WhatsApp.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a
+              href="apps.html?category=Navigation-Apps"
+              class="card h-100 text-decoration-none"
+            >
+              <div class="ratio ratio-16x9 bg-body-secondary rounded-top">
+                <img
+                  src="/images/navigation-apps.png"
+                  class="w-100 h-100 object-fit-contain rounded-top"
+                  alt=""
+                />
+              </div>
+
+              <div class="card-body">
+                <h2 class="card-title h4">Navigation Apps</h2>
+                <p class="card-text text-body-secondary">
+                  Get directions and find places near you with apps like Google
+                  Maps.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a
+              href="apps.html?category=Installing-or-Deleting-Apps"
+              class="card h-100 text-decoration-none"
+            >
+              <div class="ratio ratio-16x9 bg-body-secondary rounded-top">
+                <img
+                  src="/images/install-delete-apps.png"
+                  class="w-100 h-100 object-fit-contain rounded-top"
+                  alt="Illustration of adding and removing mobile apps"
+                />
+              </div>
+
+              <div class="card-body">
+                <h2 class="card-title h4">Installing or Deleting Apps</h2>
+                <p class="card-text text-body-secondary">
+                  Add new apps to your phone, or remove the ones you don't use.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="search.html" class="card h-100 text-decoration-none">
+              <div class="ratio ratio-16x9 bg-body-secondary rounded-top">
+                <img
+                  src="/images/others-search.png"
+                  class="w-100 h-100 object-fit-contain rounded-top"
+                  alt="Illustration of searching for technology help"
+                />
+              </div>
+
+              <div class="card-body">
+                <h2 class="card-title h4">Others (Search Here)</h2>
+                <p class="card-text text-body-secondary">
+                  Can't find what you need? Search for help with anything else.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -95,5 +138,6 @@
     <!-- Link to scripts of your own -->
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/components/site-footer.js"></script>
+    <script type="module" src="./src/components/site-navbar.js"></script>
   </body>
 </html>

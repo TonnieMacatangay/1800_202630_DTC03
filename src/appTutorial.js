@@ -9,60 +9,18 @@ import {
 } from "firebase/firestore";
 
 import { onAuthStateChanged } from "firebase/auth";
-// Instructions for four WhatsApp activities on Android.
-const tutorials = {
-  installApp: {
-    title: "Install an App through Google Play Store",
-    steps: ["1.", "2.", "3."],
-  },
 
-  deleteApp: {
-    title: "Delete an Android App",
-    steps: [
-      "Find the application you want to delete",
-      "Hold your finger down on the app until new options pop up",
-      `Select "Uninstall"`,
-      `If prompted, tap "Uninstall" again to confirm`,
-    ],
-  },
-};
-async function saveOneTutorial(tutorialID) {
-  const tutorialRef = doc(db, "googlePlayStoreTutorials", tutorialID);
+const params = new URL(window.location.href).searchParams;
+const appCategory = params.get("category");
+const appId = params.get("app-id");
+const optionId = params.get("option");
 
-  const existingTutorial = await getDoc(tutorialRef);
-
-  if (!existingTutorial.exists()) {
-    await setDoc(tutorialRef, {
-      title: tutorials[tutorialID].title,
-      steps: tutorials[tutorialID].steps,
-      platform: "android",
-    });
-  }
-}
-
-async function saveTutorials() {
-  try {
-    await saveOneTutorial("installApp");
-    await saveOneTutorial("deleteApp");
-
-    alert("Google Play Store tutorials saved to Firestore!");
-  } catch (error) {
-    console.error("Error saving tutorials:", error);
-    alert("Could not save tutorials. Check the Console.");
-  }
-}
-// saveTutorials(); // comment/uncomment as needed to save values to database.
-
-
-// Get the selected tutorial from the URL.
-const parameters = new URLSearchParams(window.location.search);
-const requestedTopic = parameters.get("topic") || "installApp";
-
-const tutorialID = requestedTopic === "installApp" ? "installApp" : requestedTopic;
-
-let tutorial = tutorials[tutorialID] || tutorials["installApp"];
+console.log("appCategory:", appCategory);
+console.log("appId:", appId);
+console.log("option:", optionId);
 
 let currentStep = 0;
+let tutorial;
 
 // Find the HTML elements.
 const stepHeading = document.getElementById("step-heading");
@@ -75,10 +33,15 @@ const previousButton = document.getElementById("previous-step");
 const nextButton = document.getElementById("next-step");
 
 // Display the current step.
-function displayStep() {
-  tutorialTitle.textContent = tutorial.title;
+async function displayStep() {
+  try {
+    tutorialTitle.textContent = tutorial.step_title;
+  } catch (error) {
+    console.error("Error getting categories: ", error);
+  }
 
-  if (currentStep === tutorial.steps.length) {
+  // Finish the very last step
+  if (currentStep === tutorial.step_description.length) {
     stepHeading.textContent = "Tutorial Completed!";
     stepInstruction.textContent = "Great job! You have finished this tutorial.";
     stepCaption.textContent = "";
@@ -92,48 +55,37 @@ function displayStep() {
     return;
   }
 
-  stepHeading.textContent = `Step ${currentStep + 1} of ${tutorial.steps.length}`;
+  stepHeading.textContent = `Step ${currentStep + 1} of ${tutorial.step_description.length}`;
 
-  stepInstruction.textContent = tutorial.steps[currentStep];
-  stepCaption.textContent = tutorial.title;
+  stepInstruction.textContent = tutorial.step_description[currentStep];
+  stepCaption.textContent = tutorial.step_title;
   imagePlaceholder.textContent = `Screenshot for Step ${currentStep + 1}`;
   // Display the screenshot for each video-call step.
   // Display screenshots for the selected tutorial.
-  if (
-    tutorialID === "installApp" ||
-    tutorialID === "deleteApp"
-  ) {
-    let imageName;
-
-    if (tutorialID === "installApp") {
-      imageName = `android-install-app-${currentStep + 1}.jpg`;
-    } else if (tutorialID === "deleteApp") {
-      imageName = `android-delete-app-${currentStep + 1}.jpg`;
-    } 
-
-    stepImage.src = `/images/${imageName}`;
-    stepImage.alt = `WhatsApp tutorial step ${currentStep + 1}`;
-
-    stepImage.hidden = false;
-    stepImage.classList.remove("d-none");
-    imagePlaceholder.classList.add("d-none");
-  } else {
+  if (currentStep === tutorial.step_description.length) {
     stepImage.hidden = true;
     stepImage.classList.add("d-none");
     imagePlaceholder.classList.remove("d-none");
+  } else {
+    stepImage.src = `/images/${tutorial.step_image[currentStep]}`;
+    // stepImage.alt = `WhatsApp tutorial step ${currentStep + 1}`; FIX LATER
+    stepImage.hidden = false;
+    stepImage.classList.remove("d-none");
+    imagePlaceholder.classList.add("d-none");
   }
 
   previousButton.disabled = currentStep === 0;
-
   nextButton.disabled = false;
   nextButton.textContent =
-    currentStep === tutorial.steps.length - 1 ? "Finish →" : "Next step →";
+    currentStep === tutorial.step_description.length - 1
+      ? "Finish →"
+      : "Next step →";
 }
 
 async function readTutorial() {
   try {
     // Reference to the selected WhatsApp tutorial
-    const tutorialRef = doc(db, "googlePlayStoreTutorials", tutorialID);
+    const tutorialRef = doc(db, "apps", appId, "app_options", optionId);
 
     // Read the document from Firestore
     const tutorialSnapshot = await getDoc(tutorialRef);
@@ -141,7 +93,6 @@ async function readTutorial() {
     if (tutorialSnapshot.exists()) {
       // Get the information stored in Firestore
       tutorial = tutorialSnapshot.data();
-
       console.log("Tutorial loaded from Firestore:", tutorial);
 
       // Show the first step
@@ -159,7 +110,7 @@ async function readTutorial() {
 
 // Next button.
 nextButton.addEventListener("click", function () {
-  if (currentStep < tutorial.steps.length) {
+  if (currentStep < tutorial.step_description.length) {
     currentStep++;
     displayStep();
   }
@@ -183,8 +134,7 @@ let signedInUser = null;
 let isFavourite = false;
 
 // Identify this tutorial in the user's favourites.
-const favouriteID = "googlePlayStoreTutorials/" + tutorialID;
-
+const favouriteID = "apps/" + appId + "/app_options/" + optionId;
 // Update the heart button.
 function updateFavouriteButton() {
   if (isFavourite) {

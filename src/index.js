@@ -6,7 +6,7 @@ import {
 
 async function displayAppsDynamically() {
 
-    let cardTemplate = document.getElementById("cardTemplate");
+    let cardTemplate = document.getElementById("cards-go-here");
     const appsCollectionRef = collection(db, "apps2")
     console.log("appsCollectionRef: ", appsCollectionRef);
         

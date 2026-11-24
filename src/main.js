@@ -3,7 +3,7 @@ import 'bootstrap';
 import { onAuthReady } from "/src/authentication.js";
 
 function showName(){
-    console.log("test showName")
+    // console.log("test showName")
     onAuthReady (function(user){
         // console.log(user.displayName);
         if (user){

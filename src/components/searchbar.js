@@ -1,25 +1,56 @@
-class SearchBar extends HTMLElement {
-  constructor() {
-    super();
-    this.renderSearchBar();
-  }
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
 
-  renderSearchBar() {
-    this.innerHTML = `
-            <!-- Search: single source of truth -->
-              <div class="container" style="margin-top: 200px">
-                <!-- <p class="fs-3">Got a specific Question? Please ask away!</p> -->
-              </div>
-              <div class="container bg-light row-align-items-center mt-5 mb-5 h-75">
-                  <form class="form-inline">
-                      <input class="form-control form-control-lg" type="text" placeholder="Type your Question Here:" aria-label="Search">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-              </div>
-            </div>
-            
-        `;
-  }
-}
+// console.log;
 
-customElements.define("search-bar", SearchBar);
+// Mock data
+const preDefinedSuggestions = [
+    "Apple",
+    "Banana",
+    "Orange",
+    "Grapes",
+    "Strawberry",
+    "Blueberry",
+    "Raspberry",
+    "Pineapple",
+    "Mango",
+    "Watermelon",
+];
+
+// Get elements
+const searchInput = document.getElementById("searchInput");
+const suggestions = document.getElementById("suggestions");
+
+// Add event listener to input
+searchInput.addEventListener("input", function () {
+    const query = searchInput.value.toLowerCase();
+    suggestions.innerHTML = "";
+
+    if (query) {
+        const filteredResults = preDefinedSuggestions.filter((item) =>
+            item.toLowerCase().includes(query),
+        );
+
+        filteredResults.forEach((result) => {
+            const suggestionItem = document.createElement("div");
+            suggestionItem.classList.add("autocomplete-suggestion");
+            suggestionItem.textContent = result;
+            suggestionItem.addEventListener("click", () => {
+                searchInput.value = result;
+                suggestions.innerHTML = "";
+            });
+            suggestions.appendChild(suggestionItem);
+        });
+    }
+});
+
+searchInput.addEventListener("change", function () {
+
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener("click", function (event) {
+    if (event.target !== searchInput) {
+        suggestions.innerHTML = "";
+    }
+});

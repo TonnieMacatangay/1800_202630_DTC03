@@ -12,8 +12,8 @@ const appName =
     ? null
     : params.get("app-id").replaceAll("-", " "); // This value is null, if we're at the "Communication Apps" page that lists all the apps
 
-console.log("appCategory:", appCategory);
-console.log("appName:", appName); // Will be null, unless we're on the App Options page
+// console.log("appCategory:", appCategory);
+// console.log("appName:", appName); // Will be null, unless we're on the App Options page
 
 // Basically displayCardsDynamically() from Demo 7
 // The code here will replace elements in apps.html (Header and buttons)
@@ -31,7 +31,7 @@ async function displayAppsDynamically() {
           appName,
           "app_options",
         );
-  console.log("appsCollectionRef: ", appsCollectionRef);
+  // console.log("appsCollectionRef: ", appsCollectionRef);
 
   // Update the Page Header
   if (appName === null) {
@@ -42,17 +42,17 @@ async function displayAppsDynamically() {
   }
 
   try {
-    console.log("Trying to getDocs");
+    // console.log("Trying to getDocs");
     const querySnapshot = await getDocs(appsCollectionRef);
     //for each document (app names) in this collection OR subcollection
-    console.log("qsnapshot", querySnapshot);
+    // console.log("qsnapshot", querySnapshot);
     querySnapshot.forEach((appDoc) => {
-      console.log("Item in QuerySnapshot");
+      // console.log("Item in QuerySnapshot");
       // Clone the element from app-categories.html that has the id#categoryButtonTemplate
       let newButton = buttonTemplate.content.cloneNode(true);
       // get the data (category field of each document in app collection is all we need for now)
       const app = appDoc.data();
-      console.log("App: ", appDoc.id, appDoc);
+      // console.log("App: ", appDoc.id, appDoc);
       // Create the button,
       // When we're on the Apps Page, ensure we only show the apps who have matching category
       // When we're on the Options Page, show all the options

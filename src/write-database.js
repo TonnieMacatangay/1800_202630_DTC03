@@ -54,7 +54,7 @@ async function submitReview(event) {
 }
 
 // ---- (2) Connect it: "form, when you are submitted, run submitReview" ----
-document.getElementById("reviewForm").addEventListener("submit", submitReview);
+document.getElementById("databaseForm").addEventListener("submit", submitReview);
 
 
 // Adds an app (document) to the apps collection

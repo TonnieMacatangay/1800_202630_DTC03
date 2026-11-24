@@ -8,7 +8,7 @@ async function displayAppsDynamically() {
 
     let cardTemplate = document.getElementById("cards-go-here");
     const appsCollectionRef = collection(db, "apps2")
-    console.log("appsCollectionRef: ", appsCollectionRef);
+    // console.log("appsCollectionRef: ", appsCollectionRef);
         
     try {
         const querySnapshot = await getDocs(appsCollectionRef);
@@ -18,7 +18,7 @@ async function displayAppsDynamically() {
             let newCard = cardTemplate.content.cloneNode(true);
             // get the data (category fields of each document in app collection)
             const app = appDoc.data();
-            console.log("App: ", appDoc)
+            // console.log("App: ", appDoc)
             // Create the Cards based on each document in apps collection in database
             newCard.querySelector("#card-link").href = `apps.html?category=${app.category}`
             newCard.querySelector("#card-image").src = `/images/${app.category_image}`

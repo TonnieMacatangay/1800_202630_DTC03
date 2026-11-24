@@ -15,9 +15,9 @@ const appCategory = params.get("category").replaceAll("-", " ");
 const appId = params.get("app-id").replaceAll("-", " ");
 const optionId = params.get("option").replaceAll("-", " ");
 
-console.log("appCategory:", appCategory);
-console.log("appId:", appId);
-console.log("option:", optionId);
+// console.log("appCategory:", appCategory);
+// console.log("appId:", appId);
+// console.log("option:", optionId);
 
 let currentStep = 0;
 let tutorial;

@@ -105,6 +105,7 @@ async function displayFavourites() {
 
   favourites.forEach(async function (favouriteID) {
     const parts = favouriteID.split("/");
+    // console.log("favourite: ", favouriteID)
 
     // Check that this is a tutorial from the database.
     if (

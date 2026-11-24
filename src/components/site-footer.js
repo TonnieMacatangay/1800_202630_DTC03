@@ -36,7 +36,7 @@ class SiteFooter extends HTMLElement {
     );}
 
     this.innerHTML = `
-        <footer class="py-4 mt-5 text-center d-md-none" style="background-color: ${MIST}; color: ${DEEP_TEAL}">
+        <footer class="py-4 mt-5 text-center d-none d-md-block" style="background-color: ${MIST}; color: ${DEEP_TEAL}">
             <p class="mb-0">&copy; 2026 BCIT COMP1800</p>
         </footer>
 

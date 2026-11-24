@@ -93,7 +93,7 @@ document.getElementById("logoutBtn").addEventListener("click", logoutUser);
 // Display the user's favourite tutorials.
 async function displayFavourites() {
   const container = document.getElementById("favourites-container");
-  const buttonTemplate = document.getElementById("appsButtonTemplate");
+  const cardTemplate = document.getElementById("favouriteCardTemplate");
 
   if (favourites.length === 0) {
     container.innerHTML =
@@ -106,11 +106,10 @@ async function displayFavourites() {
   favourites.forEach(async function (favouriteID) {
     const parts = favouriteID.split("/");
 
-    // Check that this is a tutorial from the new database.
+    // Check that this is a tutorial from the database.
     if (
-      parts.length === 4 &&
-      parts[0] === "apps" &&
-      parts[2] === "app_options"
+      parts.length === 6 &&
+      parts[0] === "apps2"
     ) {
       try {
         const tutorialSnapshot = await getDoc(doc(db, favouriteID));
@@ -118,16 +117,17 @@ async function displayFavourites() {
         if (tutorialSnapshot.exists()) {
           const tutorial = tutorialSnapshot.data();
 
-          // Clone Tonnie's button template.
-          let newButton = buttonTemplate.content.cloneNode(true);
+          // Clone mr Ruegers card template.
+          let newCard = cardTemplate.content.cloneNode(true);
 
-          newButton.querySelector("#appsButton").textContent =
-            tutorial.option_name;
+          newCard.querySelector("#favourite-title").textContent = parts[5];
+          newCard.querySelector("#favourite-description").textContent = parts[3];
+          newCard.querySelector("#favourite-image").src = `/images/${tutorial.step_image[0]}`;
 
-          newButton.querySelector("#appsButton").href =
-            `app-tutorial.html?app-id=${parts[1]}&option=${parts[3]}`;
+          newCard.querySelector("#favourite-link").href =
+            `app-tutorial.html?category=${parts[1].replaceAll(" ", "-")}&app-id=${parts[3].replaceAll(" ", "-")}&option=${parts[5].replaceAll(" ", "-")}`;
 
-          container.appendChild(newButton);
+          container.appendChild(newCard);
         }
       } catch (error) {
         console.error("Error loading favourite tutorial:", error);

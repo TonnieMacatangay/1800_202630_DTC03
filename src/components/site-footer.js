@@ -6,7 +6,7 @@ const TEAL = "#4d998f";
 const DEEP_TEAL = "#024a56";
 
 
-// Bootstrap white text, teal when hover over
+// white text, teal when hover over
 const BUTTON_COLOURS = `
 
 --bs-btn-color: #fff; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: ${TEAL};
@@ -17,7 +17,7 @@ const BUTTON_COLOURS = `
   ;
 
 
-// highlight page locator
+// highlight page
 function cleanPath(path) {
   return path.replace(/(index)?\.html$/, "").replace(/\/$/, "") || "/";
 

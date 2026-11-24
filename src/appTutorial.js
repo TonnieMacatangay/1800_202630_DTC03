@@ -134,7 +134,7 @@ let signedInUser = null;
 let isFavourite = false;
 
 // Identify this tutorial in the user's favourites.
-const favouriteID = "apps/" + appId + "/app_options/" + optionId;
+const favouriteID = "apps2/" + appCategory + "/app_selection/" + appId + "/app_options/" + optionId;
 // Update the heart button.
 function updateFavouriteButton() {
   if (isFavourite) {

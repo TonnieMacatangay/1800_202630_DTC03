@@ -13,6 +13,22 @@ import { getDoc, setDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 // https://stackoverflow.com/questions/48873465/how-to-add-sub-collection-to-a-document-in-firestore
 // https://firebase.google.com/docs/firestore/manage-data/add-data#web
 
+
+async function loadCategories() {
+    const categorySelect = document.getElementById("appCategory");
+    const querySnapshot = await getDocs(collection(db, "apps2"));
+
+    querySnapshot.forEach((categoryDoc) => {
+        const option = document.createElement("option");
+        option.value = categoryDoc.id;
+        option.textContent = categoryDoc.id;
+        categorySelect.appendChild(option);
+
+    });
+}
+
+loadCategories();
+
 // Demo 10
 // ---- (1) What to do when the review form is submitted ----
 async function submitReview(event) {
@@ -43,7 +59,7 @@ document.getElementById("reviewForm").addEventListener("submit", submitReview);
 
 // Adds an app (document) to the apps collection
 async function addApp(appName, appPlatform) {
-    const appsRef = collection(db, "apps");
+    const appsRef = collection(db, "apps2");
     console.log("Adding sample apps data...");
     await addDoc(appsRef, {
         name: appName,
@@ -51,33 +67,16 @@ async function addApp(appName, appPlatform) {
     });
 }
 
-// Adds an option (subcollection) to a specific app (document in apps collection)
-async function addOption(appId, optionName) {
-    const optionsRef = collection(db, "apps", appId);
-    console.log("Adding sample options...");
-    await addDoc(optionsRef, {
-        name: optionName,
-        steps: [],
-    });
-}
 
 // Adds steps to an option
 // Note, stepDescriptions, stepImagePaths are both an array
 // step_title is a string
 async function addSteps(appId, optionId, stepDescriptions, stepImagePaths, stepTitle) {
-    const stepsRef = collection(db, "apps", appId, optionId);
+    const stepsRef = collection(db, "apps2", appId, optionId);
     console.log("Adding sample steps data...");
     await addDoc(stepsRef, {
         descriptions: stepDescriptions,
         imagePaths: stepImagePaths,
         title: stepTitle,
     });
-}
-
-
-// Example: Generate the database for Whats App
-async function createWhatsAppEntry() {
-    addApp("WhatsApp", "android");
-    addOption(optionsRef, )
-
 }

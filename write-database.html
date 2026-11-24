@@ -47,17 +47,20 @@
                 <form id="databaseForm" novalidate>
                     <div id="appNameInput1" class="mb-3">
                         <label for="appName" class="form-label">Name of App</label>
-                        <input type="text" id="appName" class="form-control" disabled />
+                        <input type="text" id="appName" class="form-control" placeholder="e.g. WhatsApp" />
                     </div>
                     <div id="appCategoryInput1" class="mb-3">
                         <label for="appCategory" class="form-label">Category of App</label>
-                        <input type="text" id="appCategory" class="form-control" disabled />
+                        <select id="appCategory" class="form-select">
+                            <option value="" selected disabled>Choose a category</option>
+                        </select>
                     </div>
                     <!-- Note: Store option name with the step fields -->
                     <div id="appOptionInput1" class="mb-3">
-                        <label for="appCategory" class="form-label">Option of App</label>
-                        <input type="text" id="appCategory" class="form-control" disabled />
+                        <label for="optionName" class="form-label">Tutorial Name</label>
+                        <input type="text" id="optionName" class="form-control" placeholder="e.g. Make a Video Call" />
                     </div>
+    
                     <button type="button" id="addOptionBtn" class="btn btn-outline-secondary">
                         <i class="bi bi-pencil me-1"></i>Add Another Option
                     </button>
@@ -65,29 +68,26 @@
                     <h2 class="">Steps</h2>
                     <div id="stepInputFields1" class="mb-3">
                         <div id="stepTitleInput" class="mb-3">
-                            <label for="stepTitle" class="form-label">Step Title</label>
-                            <input type="text" id="stepTitle" class="form-control" disabled />
+                            <label for="stepTitle" class="form-label">Tutorial Heading</label>
+                            <input type="text" id="stepTitle" class="form-control" placeholder="e.g. Make a Telegram Video Call"/>
                         </div>
                         <div id="stepDescriptionInput" class="mb-3">
                             <label for="stepDescription" class="form-label">Step Description</label>
-                            <input type="text" id="stepDescription" class="form-control" disabled />
+                            <input type="text" id="stepDescription" class="form-control" placeholder="e.g. Open Telegram on your phone" />
                         </div>
                         <div id="stepImageInput" class="mb-3">
                             <label for="stepImage" class="form-label">Step Image Path</label>
-                            <input type="text" id="stepImage" class="form-control" disabled />
+                            <input type="text" id="stepImage" class="form-control"/>
                         </div>
                     </div>
                     <!-- NOTE: Add Another Step button should not add another Step Title -->
-                    <button type="button" id="addOptionBtn" class="btn btn-outline-secondary">
+                    <button type="button" id="addStepBtn" class="btn btn-outline-secondary">
                         <i class="bi bi-pencil me-1"></i>Add Another Step
                     </button>
                     <!-- Just to set aside on new line -->
                     <div></div>
 
-                    <button type="button" id="editBtn" class="btn btn-outline-secondary">
-                        <i class="bi bi-pencil me-1"></i>Edit
-                    </button>
-                    <button type="submit" id="saveBtn" class="btn btn-success" disabled>
+                    <button type="submit" id="saveBtn" class="btn btn-success">
                         <i class="bi bi-check-lg me-1"></i>Save
                     </button>
                 </form>
@@ -102,8 +102,7 @@
     <!-- Your own JavaScript scripts go here      -->
     <!---------------------------------------------->
 
-    <script type="module" src="/src/app.js"></script>
-    <!-- <script type="module" src="/src/write-database.js"></script> uncomment when fixed -->
+    <script type="module" src="/src/write-database.js"></script>
 
 </body>
 

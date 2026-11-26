@@ -51,7 +51,7 @@ class SiteFooter extends HTMLElement {
                     <span class="small fw-medium">Home</span>
                 </a>
 
-                <a href="/search.html" style="${BUTTON_COLOURS}" class="btn flex-fill d-flex flex-column align-items-center gap-1 py-2">
+                <a href="/search-bar.html" style="${BUTTON_COLOURS}" class="btn flex-fill d-flex flex-column align-items-center gap-1 py-2">
                     <i class="bi bi-search fs-4 lh-1" aria-hidden="true"></i>
                     <span class="small fw-medium">Search</span>
                 </a>

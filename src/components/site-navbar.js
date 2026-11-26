@@ -59,10 +59,10 @@ class SiteNavbar extends HTMLElement {
 
 
                         <div class="d-flex align-items-center gap-2 ms-lg-2" id="rightControls">
-                            <form class="nav-underline d-flex align-items-center gap-2 my-2 my-lg-0" id="navSearch" role="search">
-                                <input class="form-control d-none d-sm-block w-auto" type="search" placeholder="Search" aria-label="Search">
+                            <div class="nav-underline d-flex align-items-center gap-2 my-2 my-lg-0" id="navSearch" role="search">
+                                <input id="searchBar" class="form-control d-none d-sm-block w-auto" type="search" placeholder="Search" aria-label="Search">
 
-                            </form>
+                            </div>
                             <div id="authControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
                                 <!-- populated by JS -->
                             </div>
@@ -122,3 +122,12 @@ class SiteNavbar extends HTMLElement {
 }
 
 customElements.define("site-navbar", SiteNavbar);
+
+function sendToNextPage() {
+    searchBar.addEventListener("change", function () {
+        let searchQueryString = document.getElementById("searchBar").value.replaceAll(" ", "-");
+        console.log(searchQueryString);
+        window.location.assign(`search-results.html?search=${searchQueryString}`);
+    });
+}
+sendToNextPage();

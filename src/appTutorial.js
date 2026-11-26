@@ -93,7 +93,8 @@ async function readTutorial() {
     if (tutorialSnapshot.exists()) {
       // Get the information stored in Firestore
       tutorial = tutorialSnapshot.data();
-      console.log("Tutorial loaded from Firestore:", tutorial);
+      console.log("Tutorial loaded from Firestore");
+      // console.log("Tutorial loaded from Firestore", tutorial);
 
       // Show the first step
       currentStep = 0;

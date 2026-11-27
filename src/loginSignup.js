@@ -31,20 +31,16 @@ function initAuthUI() {
     el.classList.toggle("d-none", !visible);
   }
 
-  // Show error message with accessibility and auto-hide
-  let errorTimeout;
+  // Show error message until the user retries or switches forms
   function showError(msg) {
     alertEl.textContent = msg || "";
     alertEl.classList.remove("d-none");
-    clearTimeout(errorTimeout);
-    errorTimeout = setTimeout(hideError, 5000); // Auto-hide after 5s
   }
 
   // Hide error message
   function hideError() {
     alertEl.classList.add("d-none");
     alertEl.textContent = "";
-    clearTimeout(errorTimeout);
   }
 
   // Enable/disable submit button for forms
